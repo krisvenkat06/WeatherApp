@@ -9,20 +9,26 @@ import { ICurrentWeatherResponse } from '../models/current-weather.model';
 })
 export class CurrentWeatherComponent implements OnInit {
   public currentWeather: ICurrentWeatherResponse;
-  public cWeather : any;
+  private sub;
+  public errResponse:any;
   constructor(private _wService: WeatherService) { }
 
   ngOnInit() {
-    this._wService.getCurrentWeatherInfo().subscribe((response:ICurrentWeatherResponse)=>{
-     if(response != undefined){
-       this.currentWeather = response;
-       this.cWeather = this.currentWeather.list[0];
-      console.log("current",response);
-     } 
-    }),
-    (error) => {
-      console.log("error");
-    };
-    
+    this.getWeather();
+  }
+
+  getWeather(){
+    this.sub = this._wService.getCurrentWeatherInfo().subscribe((response:ICurrentWeatherResponse)=>{
+      if(response != undefined){
+        this.currentWeather = response;
+      } 
+     },
+     (error) => {
+       this.errResponse = error;
+     });
+  }
+
+  ngOnDestroy(){
+    this.sub.unsubscribe();
   }
 }

@@ -1,18 +1,13 @@
 <div class="card-feel">
-<div *ngIf="_currentWeather">
-    <div class="loc-container txt-cntr" bold>{{_currentWeather?.name}}</div>
-    <div><img src='//openweathermap.org/img/w/{{_currentWeather?.weather[0]?.icon}}.png' alt={{_currentWeather?.weather[0]?.main}}><i class="temp">{{_currentWeather?.main?.temp|number:'2.0-0'}}<sup>°</sup></i></div>
-    <div>{{_currentWeather?.weather[0]?.description|titlecase}} </div>
-    <div><span>High </span><span>{{_currentWeather?.main?.temp_min}}<sup>°</sup></span>                <span>Low </span><span>{{_currentWeather?.main?.temp_max}}<sup>°</sup></span>
+    <div *ngIf="_currentWeather">
+        <div class="loc-container txt-cntr" bold><span class="city">{{_currentWeather?.name}}</span></div>
+        <div><img src='//openweathermap.org/img/w/{{_currentWeather?.weather[0]?.icon}}.png' alt={{_currentWeather?.weather[0]?.main}}><i class="temp">{{math.round(_currentWeather?.main?.temp) }}<sup>°</sup></i></div>
+        <div>{{_currentWeather?.weather[0]?.description|titlecase}} </div>
+        <div><span class="max">High </span><span>{{math.round(_currentWeather?.main?.temp_max) }}<sup>°</sup></span> <span class="min">Low </span><span>{{math.round(_currentWeather?.main?.temp_min) }}<sup>°</sup></span>
+        </div>
+        <div><span class="humd">Humidity </span><span>{{_currentWeather?.main?.humidity}}%</span></div>
+        <div class="txt-cntr forecastlnk">
+            <a class="nav-link" (click)="goToForecast(_currentWeather.name)"> View Forecast</a>
+        </div>
     </div>
-    <div><span>Humidity </span><span>{{_currentWeather?.main?.humidity}}%</span></div>
-    <div class="txt-cntr forecastlnk">
-      <a class="nav-link" [routerLink]="['/10day/forecast']" [queryParams]="{city:_currentWeather.name}"> View 10 Days Forecast</a>
-    </div>
-  </div>
- </div>
-
-
- 
-
-  
+</div>

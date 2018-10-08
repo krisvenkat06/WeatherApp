@@ -1,7 +1,15 @@
-.selCity{
+.selCity {
     padding: 25px;
 }
 
-.infotabhd{
+.infotabhd {
     background-color: skyblue;
+}
+
+.txt-cntr {
+    text-align: center !important;
+}
+
+.con-cntr {
+    padding: 10em;
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-weather',
@@ -7,10 +8,18 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class WeatherComponent {
 public _currentWeather: any;
-  constructor() { }
+public math: any;
+  constructor(private _router: Router) { 
+    this.math = Math;
+  }
 
   @Input() set weatherData(value:any) {
-    this._currentWeather = value;
-    console.log("val",this._currentWeather);
+    if(value){
+      this._currentWeather = value;
+    }
+  }
+
+  goToForecast(cityName){
+    this._router.navigate(['/10day/forecast'],{ queryParams: {city:cityName}});
   }
 }

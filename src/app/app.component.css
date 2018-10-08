@@ -1,3 +1,8 @@
-.acenter{
-text-align: center;
+.acenter,
+.txt-cntr {
+    text-align: center !important;
+}
+
+.cont-margin {
+    margin: 25px;
 }

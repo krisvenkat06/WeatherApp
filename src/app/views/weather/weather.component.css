@@ -2,27 +2,22 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 4em;
     margin: 5px;
-    background-image: linear-gradient(rgb(142, 212, 240),rgb(219, 237, 243));
+    background-image: linear-gradient(rgb(142, 212, 240), rgb(219, 237, 243));
 }
 
-.loc-container{
+.loc-container {
     font-size: 2.3em;
- 
 }
 
-.temp{
+.temp {
     font-weight: 600;
     font-size: 2.3em;
 }
 
-.temp-icon{
+.temp-icon {
     float: right;
 }
 
-.txt-cntr{
-    text-align: center;
-}
-
-.forecastlnk{
-    margin-top:15px;
+.forecastlnk {
+    margin-top: 15px;
 }

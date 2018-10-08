@@ -11,6 +11,6 @@ import { WeatherComponent } from '../views/weather/weather.component';
     CurrentWeatherRoutingModule
   ],
   declarations: [CurrentWeatherComponent, WeatherComponent],
-  exports: [WeatherComponent],
+  exports: [WeatherComponent]
 })
 export class CurrentWeatherModule { }

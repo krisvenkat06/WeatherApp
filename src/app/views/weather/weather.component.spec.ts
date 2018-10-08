@@ -1,17 +1,27 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, tick } from '@angular/core/testing';
+import {By} from "@angular/platform-browser";
+import { DebugElement } from '@angular/core';
+import { RouterTestingModule } from '@angular//router/testing';
+import { Router } from '@angular/router';
 
 import { WeatherComponent } from './weather.component';
-import { DebugElement } from '@angular/core';
+import { routes } from '../../app-routing.module';
 
 describe('WeatherComponent', () => {
   let component: WeatherComponent;
   let fixture: ComponentFixture<WeatherComponent>;
-  let nameEl: DebugElement;
-  let tempEl: DebugElement;
+  let cityEl: DebugElement;
+  let currentTemp: DebugElement;
+  let maxTemp: DebugElement;
+  let minTemp: DebugElement;
+  let hum: DebugElement;
+  let cardEl :DebugElement;
+  let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WeatherComponent ]
+      declarations: [ WeatherComponent ],
+      imports : [ RouterTestingModule.withRoutes(routes)]
     })
     .compileComponents();
   }));
@@ -19,14 +29,20 @@ describe('WeatherComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WeatherComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    router = TestBed.get(Router);
+    cardEl = fixture.debugElement.query(By.css('.card-feel'));
+    cityEl = fixture.debugElement.query(By.css('span .city'));
+    currentTemp = fixture.debugElement.query(By.css('.temp'));
+    maxTemp = fixture.debugElement.query(By.css('.max'));
+    minTemp = fixture.debugElement.query(By.css('.min'));
+    hum = fixture.debugElement.query(By.css('.humd'));
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('setting Weather data to the input properties',() => {
+  it('Should set Weather data',() => {
     let data:any = {
       "coord": {
           "lon": -84.84,
@@ -69,6 +85,27 @@ describe('WeatherComponent', () => {
   };
     component.weatherData = data;
     fixture.detectChanges();
-    expect(component._currentWeather).toBeTruthy();
+    fixture.whenStable().then(()=>{
+        expect(component._currentWeather).toBeTruthy();
+        cityEl = fixture.debugElement.query(By.css('.city-feel'));
+        expect(cardEl.nativeElement.innerText).toContain(component._currentWeather.name); 
+    });
+  });
+
+  it('Should not set Weather data',() => {
+    let data:any;
+    component.weatherData = data;
+    fixture.detectChanges();
+    fixture.whenStable().then(()=>{
+        fixture.detectChanges();
+        expect(component._currentWeather).toBeUndefined();
+    });
+  });
+
+  it('should navigate to Forecast Screen', ()=>{
+    component.goToForecast('Dallas');
+    fixture.whenStable().then(()=>{
+       expect(router.navigate).toHaveBeenCalledWith(['/tenday/forecast?city=Dallas']);
+    });
   });
 });

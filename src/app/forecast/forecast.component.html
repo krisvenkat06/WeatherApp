@@ -1,21 +1,29 @@
 <div class="container">
-<table class="table" *ngIf="forecastData">
-    <caption>Forecast for <strong>{{selectedCity.city}} </strong></caption>
-    <thead class="infotabhd">
-      <tr>
-        <th scope="col">Day</th>
-        <th scope="col">Description</th>
-        <th scope="col">High / Low</th>
-        <th scope="col">Humidity</th>
-      </tr>
-    </thead>
-    <tbody >
-      <tr *ngFor="let city of forecastData.list">
-        <td>{{city?.dt*1000|date}}</td>
-        <td><img class="card-img-top" src='//openweathermap.org/img/w/{{city?.weather[0]?.icon}}.png' alt={{city?.weather[0]?.main}}>{{city?.weather[0]?.description}}</td>
-        <td>{{city?.temp?.max|number:'2.0-0'}}<sup>°</sup> / {{city?.temp?.min|number:'2.0-0'}}<sup>°</sup></td>
-        <td>{{city?.humidity}}%</td>
-      </tr>
-    </tbody>
-  </table>
+    <div *ngIf="forecastData else forecastNotAvail">
+        <table class="table">
+            <caption>Forecast for <strong>{{selectedCity?.city}} </strong></caption>
+            <thead class="infotabhd">
+                <tr>
+                    <th scope="col">Day</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">High / Low</th>
+                    <th scope="col">Humidity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let city of forecastData.list">
+                    <td>{{city?.dt*1000|date}}</td>
+                    <td><img class="card-img-top" src='//openweathermap.org/img/w/{{city?.weather[0]?.icon}}.png' alt={{city?.weather[0]?.main}}>{{city?.weather[0]?.description}}</td>
+                    <td>{{ math.round(city?.temp?.max)}}<sup>°</sup> / {{math.round(city?.temp?.min)}}<sup>°</sup></td>
+                    <td>{{city?.humidity}}%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div *ngIf="negResponse">
+    <div class="container con-cntr">
+        <h1 class="h1 txt-cntr">Oops! We are facing some issue. Please try after sometime.</h1>
+    </div>
 </div>

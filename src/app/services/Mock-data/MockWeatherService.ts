@@ -1,0 +1,25 @@
+import { WeatherService } from '../weather.service';
+import { Observable } from 'rxjs';
+
+export class MockWeatherService extends WeatherService{
+
+    constructor(){
+        super(null);
+    }
+
+    public currentWeatherData:any = {"cnt":4,"list":[{"coord":{"lon":-84.84,"lat":33.92},"sys":{"type":1,"id":749,"message":0.0047,"country":"US","sunrise":1538480110,"sunset":1538522465},"weather":[{"id":802,"main":"Clouds","description":"scattered clouds","icon":"03d"}],"main":{"temp":29.06,"pressure":1023,"humidity":48,"temp_min":28,"temp_max":30.6},"visibility":11265,"wind":{"speed":1.52,"deg":7.00235},"clouds":{"all":40},"dt":1538511896,"id":4190598,"name":"Dallas"},{"coord":{"lon":-94.16,"lat":33.11},"sys":{"type":1,"id":287,"message":0.004,"country":"US","sunrise":1538482331,"sunset":1538524717},"weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04d"}],"main":{"temp":29.22,"pressure":1019,"humidity":58,"temp_min":28.9,"temp_max":29.5},"visibility":16093,"wind":{"speed":2.6,"deg":140},"clouds":{"all":75},"dt":1538511896,"id":4671576,"name":"Atlanta"},{"coord":{"lon":-83.05,"lat":42.33},"sys":{"type":1,"id":1401,"message":0.0041,"country":"US","sunrise":1538479879,"sunset":1538521826},"weather":[{"id":804,"main":"Clouds","description":"overcast clouds","icon":"04d"}],"main":{"temp":20.66,"pressure":1016,"humidity":68,"temp_min":18.9,"temp_max":22.2},"visibility":16093,"wind":{"speed":2.6,"deg":300},"clouds":{"all":90},"dt":1538511896,"id":4990729,"name":"Detroit"},{"coord":{"lon":-122.33,"lat":47.61},"sys":{"type":1,"id":2949,"message":0.005,"country":"US","sunrise":1538489467,"sunset":1538531081},"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10d"}],"main":{"temp":14.22,"pressure":1007,"humidity":57,"temp_min":11.1,"temp_max":16.1},"visibility":16093,"wind":{"speed":5.7,"deg":190,"gust":10.8},"clouds":{"all":40},"dt":1538511896,"id":5809844,"name":"Seattle"}]};
+
+    public forecastData: any = 
+        {"city":{"id":4684888,"name":"Dallas","coord":{"lon":-96.7969,"lat":32.7763},"country":"US","population":1197816},"cod":"200","message":20.1808261,"cnt":10,"list":[{"dt":1538676000,"temp":{"day":31.75,"min":24.99,"max":32.24,"night":24.99,"eve":29.14,"morn":31.75},"pressure":1010.24,"humidity":82,"weather":[{"id":800,"main":"Clear","description":"sky is clear","icon":"01d"}],"speed":3.97,"deg":178,"clouds":0},{"dt":1538762400,"temp":{"day":28.71,"min":23.16,"max":29.76,"night":25.17,"eve":28.49,"morn":23.16},"pressure":1008.39,"humidity":82,"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10d"}],"speed":5.23,"deg":181,"clouds":12,"rain":0.43},{"dt":1538848800,"temp":{"day":28.24,"min":24.01,"max":28.24,"night":24.01,"eve":25.94,"morn":24.24},"pressure":1006.19,"humidity":83,"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10d"}],"speed":4.86,"deg":179,"clouds":48,"rain":0.83},{"dt":1538935200,"temp":{"day":26.95,"min":23.06,"max":26.95,"night":23.77,"eve":25.21,"morn":23.06},"pressure":999.88,"humidity":0,"weather":[{"id":501,"main":"Rain","description":"moderate rain","icon":"10d"}],"speed":8.98,"deg":169,"clouds":9,"rain":8.72},{"dt":1539021600,"temp":{"day":25.77,"min":22.84,"max":25.77,"night":23.08,"eve":24.18,"morn":22.84},"pressure":999.58,"humidity":0,"weather":[{"id":502,"main":"Rain","description":"heavy intensity rain","icon":"10d"}],"speed":8.73,"deg":175,"clouds":24,"rain":16.75},{"dt":1539108000,"temp":{"day":26.33,"min":22.13,"max":26.33,"night":22.13,"eve":24.93,"morn":22.67},"pressure":1003.09,"humidity":0,"weather":[{"id":502,"main":"Rain","description":"heavy intensity rain","icon":"10d"}],"speed":2.76,"deg":191,"clouds":9,"rain":20.51},{"dt":1539194400,"temp":{"day":19.33,"min":19.23,"max":19.88,"night":19.4,"eve":19.88,"morn":19.23},"pressure":1007.71,"humidity":0,"weather":[{"id":501,"main":"Rain","description":"moderate rain","icon":"10d"}],"speed":7.76,"deg":19,"clouds":98,"rain":10.91},{"dt":1539280800,"temp":{"day":18.26,"min":14.03,"max":18.26,"night":14.03,"eve":17.46,"morn":15.95},"pressure":1007.98,"humidity":0,"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10d"}],"speed":6.21,"deg":69,"clouds":73,"rain":2.04},{"dt":1539367200,"temp":{"day":18.89,"min":12.16,"max":19.75,"night":15.1,"eve":19.75,"morn":12.16},"pressure":1003.67,"humidity":0,"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10d"}],"speed":2.04,"deg":111,"clouds":4,"rain":0.89},{"dt":1539453600,"temp":{"day":24.92,"min":13.2,"max":24.92,"night":18.62,"eve":24.45,"morn":13.2},"pressure":998.73,"humidity":0,"weather":[{"id":800,"main":"Clear","description":"sky is clear","icon":"01d"}],"speed":3.22,"deg":202,"clouds":1}]};
+
+
+
+    getCurrentWeatherInfo(): Observable<any>{
+        return Observable.of(this.currentWeatherData);
+    }
+
+    getForecastInfo(data): Observable<any> {
+        return Observable.of(this.forecastData);
+    } 
+
+}

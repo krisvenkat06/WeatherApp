@@ -1,23 +1,21 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div>
-  <div class="acenter">
-  <h1>
-    {{ title }}
-  </h1>
+<div class="acenter">
+    <h1>
+        {{ title }}
+    </h1>
 </div>
- <div class="container">
-  <ul class="nav nav-pills nav-justified">
+<div class="cont-margin">
+    <ul class="nav nav-pills nav-justified">
         <li class="nav-item" [routerLinkActive]="['active']">
-      <a class="nav-link" [routerLink]="['/weather/today']">Current weather</a>
-    </li>
-    <li class="nav-item"
-        [routerLinkActive]="['active']">
-      <a class="nav-link"
-         [routerLink]="['/10day/forecast']"> 10 Days Forecast
+            <a class="nav-link" [routerLink]="['/weather/today']">Current weather</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']">
+            <a class="nav-link" [routerLink]="['/10day/forecast']"> 10 Days Forecast
       </a>
-    </li>    
-  </ul>
+        </li>
+    </ul>
 </div>
 
-<router-outlet></router-outlet>
-</div>
+<router-outlet>
+
+</router-outlet>
