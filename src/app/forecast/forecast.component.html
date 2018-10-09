@@ -1,7 +1,7 @@
 <div class="container">
-    <div *ngIf="forecastData else forecastNotAvail">
+    <div *ngIf="forecastData">
         <table class="table">
-            <caption>Forecast for <strong>{{selectedCity?.city}} </strong></caption>
+            <caption id="forecastCity">Forecast for <strong>{{selectedCity?.city}} </strong></caption>
             <thead class="infotabhd">
                 <tr>
                     <th scope="col">Day</th>
